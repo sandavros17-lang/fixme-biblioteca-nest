@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Autor {
+  id           Int      @id @default(autoincrement())
+  nombre       Strng
+  nacionalidad String?
+  createdAt    DateTime @default(now())
+  libros       Libro[]
+
+  @@map("autores")
+}
+
+model Categoria {
+  id     Int     @id @default(autoincrement())
+  nombre String  @unique
+  libros Libro[]
+
+  @@map("categorias")
+}
+
+model Libro {
+  id              Int        @id @default(autoincrement())
+  titulo          String
+  isbn            String     @unique
+  anioPublicacion Int
+  stock           Int        @default(1)
+  createdAt       DateTime   @default(now())
+  autorId         Int
+  categoriaId     Int
+  autor           Autor      @relation(fields: [autorId], references: [id])
+  categoria       Categoria  @relation(fields: [categoriaId], references: [id])
+  prestamos       Prestamo[]
+
+  @@map("libros")
+}
+
+model Socio {
+  id        Int        @id @default(autoincrement())
+  nombre    String
+  email     String     @unique
+  activo    Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  prestamos Prestamo[]
+
+  @@map("socios")
+}
+
+model Prestamo {
+  id              Int       @id @default(autoincrement())
+  fechaPrestamo   DateTime  @default(now())
+  fechaLimite     DateTime
+  fechaDevolucion DateTime?
+  libroId         Int
+  socioId         Int
+  libro           Libro     @relation(fields: [libroId], references: [id])
+  socio           Socio     @relation(fields: [socioId], references: [ID])
+
+  @@map("prestamos")
+}
