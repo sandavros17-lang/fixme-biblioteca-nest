@@ -34,7 +34,7 @@ export class LibroService {
   }
 
   findAll(categoriaId?: number) {
-    return this.prisma.libros.findMany({
+    return this.prisma.libro.findMany({
       where: { categoriaId },
       orderBy: { titulo: 'asc' },
       include: { autor: true, categoria: true },

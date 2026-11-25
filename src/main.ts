@@ -12,7 +12,7 @@ async function bootstrap() {
       transform: true,
       forbidNonWhitelisted: true,
     }),
-  ;
+  );
   const config = new DocumentBuilder()
     .setTitle('Biblioteca API')
     .setDescription('API para gestionar libros, socios y préstamos')

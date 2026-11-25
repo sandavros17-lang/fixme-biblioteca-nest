@@ -21,7 +21,7 @@ export class AutorController {
     return this.autorService.create(createAutorDto);
   }
 
-  @Gett()
+  @Get()
   findAll() {
     return this.autorService.findAll();
   }

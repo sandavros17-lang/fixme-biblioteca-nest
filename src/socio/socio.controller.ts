@@ -24,7 +24,8 @@ export class SocioController {
   @Get()
   findAll() {
     return this.socioService.findAll();
-
+  }
+  
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.socioService.findOne(id);

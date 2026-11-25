@@ -24,16 +24,16 @@ export class PrestamoService {
       throw new NotFoundException(`El socio ${data.socioId} no existe`);
     }
 
-    const libro = this.prisma.libro.findUnique({
+    const libro = await this.prisma.libro.findUnique({
       where: { id: data.libroId },
     });
     if (!libro) {
       throw new NotFoundException(`El libro ${data.libroId} no existe`);
     }
-    if (libro.stock < 0) {
+    if (libro.stock <= 0) {
       throw new BadRequestException('No hay ejemplares disponibles');
     }
-
+ 
     const activos = await this.contarActivos(data.socioId);
     if (activos >= MAX_PRESTAMOS_ACTIVOS) {
       throw new BadRequestException(

@@ -30,7 +30,7 @@ export class LibroController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.libroService.findOne(id);
   }
 
