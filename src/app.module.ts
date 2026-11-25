@@ -15,6 +15,7 @@ import { PrestamoModule } from './prestamo/prestamo.module.js';
     CategoriaModule,
     LibroModule,
     SocioModule,
+    PrestamoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

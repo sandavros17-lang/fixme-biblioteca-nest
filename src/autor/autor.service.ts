@@ -20,7 +20,7 @@ export class AutorService {
       where: { id },
       include: { libros: true },
     });
-    if (autor) {
+    if (!autor) {
       throw new NotFoundException(`El autor ${id} no existe`);
     }
     return autor;

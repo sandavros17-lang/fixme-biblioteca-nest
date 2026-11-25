@@ -9,7 +9,7 @@ datasource db {
 
 model Autor {
   id           Int      @id @default(autoincrement())
-  nombre       Strng
+  nombre       String
   nacionalidad String?
   createdAt    DateTime @default(now())
   libros       Libro[]
@@ -60,7 +60,7 @@ model Prestamo {
   libroId         Int
   socioId         Int
   libro           Libro     @relation(fields: [libroId], references: [id])
-  socio           Socio     @relation(fields: [socioId], references: [ID])
+  socio           Socio     @relation(fields: [socioId], references: [id])
 
   @@map("prestamos")
 }

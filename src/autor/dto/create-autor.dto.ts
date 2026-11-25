@@ -8,7 +8,7 @@ export class CreateAutorDto {
   nombre!: string;
 
   @ApiPropertyOptional({ example: 'Colombiana' })
-  @IsOptinal()
+  @IsOptional()
   @IsString()
   nacionalidad?: string;
 }
