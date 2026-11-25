@@ -33,7 +33,7 @@ export class PrestamoService {
     if (libro.stock <= 0) {
       throw new BadRequestException('No hay ejemplares disponibles');
     }
-
+ 
     const activos = await this.contarActivos(data.socioId);
     if (activos >= MAX_PRESTAMOS_ACTIVOS) {
       throw new BadRequestException(
